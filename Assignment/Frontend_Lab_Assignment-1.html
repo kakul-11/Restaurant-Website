@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kakul Saini - Portfolio</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f8fc;
+            color: #222;
+        }
+
+        header {
+            background-color: #06295a;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 4%;
+        }
+
+        .logo h1 {
+            font-size: 23px;
+        }
+
+        .logo p {
+            font-size: 13px;
+            margin-top: 3px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 28px;
+            font-size: 13px;
+            font-weight: bold;
+            padding-bottom: 8px;
+        }
+
+        nav a:hover {
+            color: #ffd900;
+            border-bottom: 3px solid #ffd900;
+        }
+
+        .home {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 18%;
+            background-color: #eef6ff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .home-text {
+            width: 55%;
+        }
+
+        .home-text h1 {
+            font-size: 28px;
+            color: #122b50;
+            margin-bottom: 5px;
+        }
+
+        .home-text h2 {
+            font-size: 19px;
+            color: #1761a0;
+            margin-bottom: 10px;
+        }
+
+        .home-text p {
+            font-size: 13px;
+            line-height: 1.5;
+            max-width: 400px;
+        }
+
+        .cv-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #06295a;
+            color: white;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .cv-btn:hover {
+            background-color: #1761a0;
+        }
+
+        .profile img {
+            width: 185px;
+            height: 185px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 7px gray;
+        }
+
+        .container {
+            width: 75%;
+            margin: 20px auto;
+        }
+
+        .top-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.6fr;
+            gap: 35px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #1761a0;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .skills ul {
+            padding-left: 20px;
+        }
+
+        .skills li {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 7px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+
+        .bottom-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+        }
+
+        .project-card {
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: white;
+            border-radius: 3px;
+        }
+
+        .project-card h3 {
+            color: #122b50;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+
+        .project-card p {
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .project-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1761a0;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 10px;
+        }
+
+        .contact input,
+        .contact textarea {
+            width: 100%;
+            padding: 7px;
+            margin-bottom: 8px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            font-size: 10px;
+        }
+
+        .contact textarea {
+            height: 60px;
+            resize: none;
+        }
+
+        .contact label {
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .contact button {
+            background-color: #06295a;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 10px;
+        }
+
+        .contact button:hover {
+            background-color: #1761a0;
+        }
+
+        .reset {
+            background-color: #ddd !important;
+            color: #222 !important;
+            margin-left: 4px;
+        }
+
+        .social {
+            margin-top: 25px;
+        }
+
+        .social h2 {
+            color: #1761a0;
+            margin-bottom: 12px;
+        }
+
+        .social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            margin-right: 12px;
+            font-size: 21px;
+            text-decoration: none;
+            color: #1761a0;
+            border: 1px solid #1761a0;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+        .social a:hover {
+            background-color: #1761a0;
+            color: white;
+        }
+
+        footer {
+            background-color: #06295a;
+            color: white;
+            text-align: center;
+            padding: 14px;
+            margin-top: 20px;
+            font-size: 11px;
+        }
+
+        @media screen and (max-width: 900px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 8px;
+            }
+
+            .home {
+                padding: 35px 8%;
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+
+            .home-text {
+                width: 100%;
+            }
+
+            .top-section,
+            .bottom-section {
+                grid-template-columns: 1fr;
+            }
+
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>Kakul Saini</h1>
+            <p>CSE Student</p>
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#education">Education</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="home" id="home">
+
+        <div class="home-text">
+            <h1>Hi, I'm Kakul Saini</h1>
+            <h2>CSE Student</h2>
+
+            <p>
+                I am a Computer Science and Engineering student
+                with an interest in programming, web development
+                and emerging technologies. I enjoy learning new
+                technologies and building practical projects.
+            </p>
+
+            <a href="#" class="cv-btn">Download CV</a>
+        </div>
+
+        <div class="profile">
+            <img src="profile.jpeg" alt="Kakul Saini">
+        </div>
+
+    </section>
+
+    <div class="container">
+
+        <div class="top-section">
+
+            <section class="section" id="about">
+                <h2>👤 About Me</h2>
+
+                <p>
+                    I am a B.Tech Computer Science and Engineering
+                    student at GLA University. I am a quick learner
+                    and enjoy solving programming problems and
+                    exploring new technologies. My goal is to improve
+                    my technical skills and become a successful
+                    software developer.
+                </p>
+            </section>
+
+            <section class="section skills" id="skills">
+                <h2>&lt;/&gt; Skills</h2>
+
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Java</li>
+                    <li>Python</li>
+                    <li>JavaScript</li>
+                    <li>Git & GitHub</li>
+                    <li>Machine Learning</li>
+                </ul>
+            </section>
+
+            <section class="section" id="education">
+                <h2>🎓 Education</h2>
+
+                <table>
+                    <tr>
+                        <th>Qualification</th>
+                        <th>Institute</th>
+                        <th>Year</th>
+                        <th>Result</th>
+                    </tr>
+
+                    <tr>
+                        <td>B.Tech (CSE)</td>
+                        <td>GLA University</td>
+                        <td>2025-26</td>
+                        <td>Pursuing</td>
+                    </tr>
+
+                    <tr>
+                        <td>12th</td>
+                        <td>Saraswati Vidya Mandir</td>
+                        <td>2024</td>
+                        <td>Passed</td>
+                    </tr>
+
+                    <tr>
+                        <td>10th</td>
+                        <td>Saraswati Vidya Mandir</td>
+                        <td>2022</td>
+                        <td>Passed</td>
+                    </tr>
+                </table>
+            </section>
+
+        </div>
+
+        <div class="bottom-section">
+
+            <section class="section" id="projects">
+
+                <h2>💼 Projects</h2>
+
+                <div class="projects">
+
+                    <div class="project-card">
+                        <h3>1. MediAttend</h3>
+
+                        <p>
+                            A machine learning project that predicts
+                            whether a patient is likely to attend a
+                            scheduled hospital appointment.
+                        </p>
+
+                        <a href="#">View Project</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>2. Emotion Detector</h3>
+
+                        <p>
+                            A face emotion detection project using
+                            Python, TensorFlow and CNN to identify
+                            emotions from facial expressions.
+                        </p>
+
+                        <a href="#">View Project</a>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>3. Restaurant Website</h3>
+
+                        <p>
+                            A responsive restaurant website designed
+                            using HTML, CSS and JavaScript with a
+                            user-friendly interface.
+                        </p>
+
+                        <a href="#">View Project</a>
+                    </div>
+
+                </div>
+
+                <div class="social">
+
+                    <h2>🔗 Connect with me</h2>
+
+                    <a href="#" target="_blank">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="#" target="_blank">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+
+                    <a href="#" target="_blank">
+                        <i class="fa-brands fa-x-twitter"></i>
+                    </a>
+
+                    <a href="#" target="_blank">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+
+                </div>
+
+            </section>
+
+            <section class="section contact" id="contact">
+
+                <h2>✉ Contact Me</h2>
+
+                <form>
+
+                    <label>Name</label>
+                    <input type="text" placeholder="Enter your name">
+
+                    <label>Email</label>
+                    <input type="email" placeholder="Enter your email">
+
+                    <label>Message</label>
+                    <textarea placeholder="Type your message..."></textarea>
+
+                    <button type="submit">Send Message</button>
+                    <button type="reset" class="reset">Reset</button>
+
+                </form>
+
+            </section>
+
+        </div>
+
+    </div>
+
+    <footer>
+        © 2026 Kakul Saini. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
