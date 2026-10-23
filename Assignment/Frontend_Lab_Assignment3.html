@@ -1,0 +1,460 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend Lab Assignment 3</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f2f5fa;
+            color: #222;
+            transition: 0.3s;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .card {
+            background-color: white;
+            padding: 22px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px #00000012;
+        }
+
+        h2 {
+            color: #2563eb;
+            margin-top: 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            margin: 8px 0 14px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 6px;
+            background-color: #2563eb;
+            color: white;
+            cursor: pointer;
+            margin: 4px 2px;
+            font-size: 14px;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        .result {
+            margin-top: 12px;
+            font-weight: bold;
+            overflow-wrap: anywhere;
+        }
+
+        #clock {
+            text-align: center;
+            font-size: 38px;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .task-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            margin-top: 8px;
+            background: #f0f4fa;
+            border-radius: 6px;
+        }
+
+        .task-row span {
+            flex: 1;
+            overflow-wrap: anywhere;
+        }
+
+        .task-row input {
+            width: auto;
+            margin: 0;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: gray;
+        }
+
+        .delete-btn {
+            background-color: #dc2626;
+        }
+
+        .theme-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        /* Dark theme */
+        body.dark {
+            background-color: #171923;
+            color: #f5f5f5;
+        }
+
+        body.dark .card {
+            background-color: #272b38;
+            color: #f5f5f5;
+        }
+
+        body.dark h2 {
+            color: #93c5fd;
+        }
+
+        body.dark input {
+            background-color: #353a49;
+            color: white;
+            border-color: #666;
+        }
+
+        body.dark .task-row {
+            background-color: #353a49;
+        }
+
+        /* Green theme */
+        body.green {
+            background-color: #e8f5e9;
+            color: #1b4332;
+        }
+
+        body.green header {
+            background-color: #15803d;
+        }
+
+        body.green h2 {
+            color: #15803d;
+        }
+
+        body.green button {
+            background-color: #15803d;
+        }
+
+        body.green .card {
+            background-color: #ffffff;
+        }
+
+        .error {
+            color: #dc2626;
+            font-size: 14px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Frontend Lab Assignment - 3</h1>
+</header>
+
+<div class="container">
+
+    <!-- QUESTION 1: BMI CALCULATOR -->
+    <section class="card">
+        <h2>1. BMI Calculator</h2>
+
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" placeholder="Enter your weight" min="1" step="any">
+
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" placeholder="Enter your height" min="1" step="any">
+
+        <button onclick="calculateBMI()">Calculate BMI</button>
+
+        <div id="bmiResult" class="result" aria-live="polite"></div>
+    </section>
+
+
+    <!-- QUESTION 2: SIGNUP PAGE -->
+    <section class="card">
+        <h2>2. Signup Page with Form Validation</h2>
+
+        <form id="signupForm">
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" placeholder="Enter your full name"
+                   required minlength="2" maxlength="60">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password"
+                   placeholder="At least 8 characters" required
+                   minlength="8" maxlength="64">
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword"
+                   placeholder="Re-enter password" required>
+
+            <button type="submit">Sign Up</button>
+
+            <div id="signupResult" class="result" aria-live="polite"></div>
+        </form>
+    </section>
+
+
+    <!-- QUESTION 3: COLOR THEME CHANGER -->
+    <section class="card">
+        <h2>3. Change Color Theme</h2>
+
+        <p>Select a theme for this webpage:</p>
+
+        <div class="theme-buttons">
+            <button onclick="changeTheme('light')">Light Theme</button>
+            <button onclick="changeTheme('dark')">Dark Theme</button>
+            <button onclick="changeTheme('green')">Green Theme</button>
+        </div>
+
+        <p id="themeResult" class="result" aria-live="polite">
+            Current Theme: Light
+        </p>
+    </section>
+
+
+    <!-- QUESTION 4: DIGITAL CLOCK -->
+    <section class="card">
+        <h2>4. Digital Clock</h2>
+
+        <div id="clock" aria-live="off">00:00:00</div>
+
+        <p id="clockDate" style="text-align:center;"></p>
+    </section>
+
+
+    <!-- QUESTION 5: TODO LIST -->
+    <section class="card">
+        <h2>5. To-Do List App</h2>
+
+        <label for="taskInput">Enter a task:</label>
+        <input type="text" id="taskInput"
+               placeholder="What do you need to do?" maxlength="200">
+
+        <button onclick="addTask()">Add Task</button>
+
+        <div id="taskList" aria-live="polite"></div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Frontend Lab Assignment - 3</p>
+</footer>
+
+
+<script>
+
+    // QUESTION 1: BMI CALCULATOR
+
+    function calculateBMI() {
+        let weight = Number(document.getElementById("weight").value);
+        let height = Number(document.getElementById("height").value);
+        let result = document.getElementById("bmiResult");
+
+        if (weight <= 0 || height <= 0 ||
+            !Number.isFinite(weight) || !Number.isFinite(height) ||
+            document.getElementById("weight").value === "" ||
+            document.getElementById("height").value === "") {
+
+            result.textContent = "Please enter a valid weight and height.";
+            return;
+        }
+
+        // Convert height from centimetres to metres
+        height = height / 100;
+
+        // BMI formula
+        let bmi = weight / (height * height);
+        let category;
+
+        if (bmi < 18.5) {
+            category = "Underweight";
+        } else if (bmi < 25) {
+            category = "Normal";
+        } else {
+            category = "Overweight";
+        }
+
+        result.textContent =
+            "Your BMI is " + bmi.toFixed(2) +
+            " | Category: " + category;
+    }
+
+
+    // QUESTION 2: SIGNUP FORM VALIDATION
+
+    document.getElementById("signupForm").addEventListener("submit",
+        function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let password = document.getElementById("password").value;
+            let confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            let result = document.getElementById("signupResult");
+
+            if (name.length < 2) {
+                result.textContent = "Please enter your full name.";
+                return;
+            }
+
+            if (password.length < 8) {
+                result.textContent =
+                    "Password must contain at least 8 characters.";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                result.textContent = "Passwords do not match.";
+                return;
+            }
+
+            result.textContent =
+                "Signup validation successful for " + name + "!";
+
+            this.reset();
+        }
+    );
+
+
+    // QUESTION 3: CHANGE COLOR THEME
+
+    function changeTheme(theme) {
+        document.body.classList.remove("dark", "green");
+
+        if (theme === "dark") {
+            document.body.classList.add("dark");
+        } else if (theme === "green") {
+            document.body.classList.add("green");
+        }
+
+        let themeName = theme.charAt(0).toUpperCase() + theme.slice(1);
+
+        document.getElementById("themeResult").textContent =
+            "Current Theme: " + themeName;
+    }
+
+
+    // QUESTION 4: DIGITAL CLOCK
+
+    function updateClock() {
+        let now = new Date();
+
+        let hours = String(now.getHours()).padStart(2, "0");
+        let minutes = String(now.getMinutes()).padStart(2, "0");
+        let seconds = String(now.getSeconds()).padStart(2, "0");
+
+        document.getElementById("clock").textContent =
+            hours + ":" + minutes + ":" + seconds;
+
+        document.getElementById("clockDate").textContent =
+            now.toLocaleDateString("en-IN", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+
+
+    // QUESTION 5: TODO LIST
+
+    function addTask() {
+        let input = document.getElementById("taskInput");
+        let task = input.value.trim();
+
+        if (task === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        let taskList = document.getElementById("taskList");
+
+        let row = document.createElement("div");
+        row.className = "task-row";
+
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.setAttribute("aria-label", "Mark task as completed");
+
+        let taskText = document.createElement("span");
+        taskText.textContent = task;
+
+        checkbox.addEventListener("change", function() {
+            taskText.classList.toggle("completed", checkbox.checked);
+        });
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.className = "delete-btn";
+
+        deleteButton.addEventListener("click", function() {
+            row.remove();
+        });
+
+        row.appendChild(checkbox);
+        row.appendChild(taskText);
+        row.appendChild(deleteButton);
+
+        taskList.appendChild(row);
+
+        input.value = "";
+        input.focus();
+    }
+
+    // Add a task by pressing Enter
+    document.getElementById("taskInput").addEventListener("keydown",
+        function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                addTask();
+            }
+        }
+    );
+
+</script>
+
+</body>
+</html>
